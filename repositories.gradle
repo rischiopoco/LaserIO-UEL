@@ -35,4 +35,8 @@ repositories {
             includeGroup "mekanism"
         }
     }
+    maven { // Registrate
+        url "https://maven.tterrag.com/"
+    }
+    mavenLocal()
 }

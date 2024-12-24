@@ -3,6 +3,7 @@ def extraModsDir = "extra-mods"
 def extraAPIDir = "extra-api"
 
 repositories {
+    mavenLocal()
     // Put repositories for dependencies here
     // ForgeGradle automatically adds the Forge maven and Maven Central for you
 
@@ -35,8 +36,11 @@ repositories {
             includeGroup "mekanism"
         }
     }
-    maven { // Registrate
-        url "https://maven.tterrag.com/"
+    maven {
+        url = "https://maven.tterrag.com/"
+        content {
+            // need to be specific here due to version overlaps
+            includeGroup("com.tterrag.registrate")
+        }
     }
-    mavenLocal()
 }

@@ -10,7 +10,11 @@ dependencies {
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
     // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}") // Adds the full JEI mod as a runtime dependency
-     implementation fg.deobf("com.tterrag.registrate:Registrate:MC${minecraft_version}-${registrate_version}") // Adds registrate as a dependency
+
+    // MC<minecraft_version>-<registrate_version>
+    implementation fg.deobf("com.tterrag.registrate:Registrate:MC1.20-${registrate_version}")
+    // [MC<minecraft_version>,MC<next_minecraft_version>)
+    jarJar(group: 'com.tterrag.registrate', name: 'Registrate', version: "[MC1.19.3,MC1.20)")
 
     // Examples using mod jars from ./libs
     // implementation fg.deobf("blank:coolmod-${mc_version}:${coolmod_version}")

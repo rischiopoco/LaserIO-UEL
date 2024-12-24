@@ -11,8 +11,6 @@ jarJar.enable()
 reobf {
     jarJar { }
 }
-
-tasks.jarJar.finalizedBy('reobfJarJar')
 base {
     archivesName = mod_id
 }

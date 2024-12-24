@@ -1,0 +1,38 @@
+// All jar files from this folder will be added automatically as runtime mod dependencies
+def extraModsDir = "extra-mods"
+def extraAPIDir = "extra-api"
+
+repositories {
+    // Put repositories for dependencies here
+    // ForgeGradle automatically adds the Forge maven and Maven Central for you
+
+    // If you have mod jar dependencies in ./libs, you can declare them as a repository like so:
+    // flatDir {
+    //     dir 'libs'
+    // }
+
+    flatDir {
+        name "extra-mods"
+        dir file(extraModsDir)
+    }
+
+    flatDir {
+        name "extra-api"
+        dir file(extraAPIDir)
+    }
+
+    maven { //Patchouli && JEI
+        url 'https://maven.blamejared.com'
+        content {
+            includeGroup "vazkii.patchouli"
+            includeGroup "mezz.jei"
+        }
+    }
+
+    maven { //Mekanism
+        url = 'https://modmaven.dev/'
+        content {
+            includeGroup "mekanism"
+        }
+    }
+}

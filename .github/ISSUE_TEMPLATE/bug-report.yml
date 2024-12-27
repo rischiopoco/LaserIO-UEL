@@ -30,7 +30,6 @@ body:
       label: Modpack & Version
       description: |
         If you are running a Modpack, please provide the name and version of the pack.
-      placeholder: ""
     validations:
       required: false
   - type: dropdown

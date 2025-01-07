@@ -95,18 +95,19 @@ public class CardChemicalScreen extends CardItemScreen {
     public void changeAmount(int change) {
         if (Screen.hasShiftDown()) change *= 10;
         if (Screen.hasControlDown()) change *= 100;
-        int overClockerCount = container.getSlot(1).getItem().getCount();
+        if (Screen.hasAltDown()) change *= 1000;
+        int overclockerCount = container.getSlot(1).getItem().getCount();
         if (change < 0) {
             if (currentMode == 0) {
                 currentPriority = (short) (Math.max(currentPriority + change, -4096));
             } else {
-                currentChemicalExtractAmt = (Math.max(currentChemicalExtractAmt + change, 100));
+                currentChemicalExtractAmt = (Math.max(currentChemicalExtractAmt + change, 1));
             }
         } else {
             if (currentMode == 0) {
                 currentPriority = (short) (Math.min(currentPriority + change, 4096));
             } else {
-                currentChemicalExtractAmt = (Math.min(currentChemicalExtractAmt + change, Math.max(overClockerCount * Config.MULTIPLIER_MILLI_BUCKETS_CHEMICAL.get(), Config.BASE_MILLI_BUCKETS_CHEMICAL.get())));
+                currentChemicalExtractAmt = (Math.min(currentChemicalExtractAmt + change, Math.max(overclockerCount * Config.MULTIPLIER_MILLI_BUCKETS_CHEMICAL.get(), Config.BASE_MILLI_BUCKETS_CHEMICAL.get())));
             }
         }
     }
@@ -114,7 +115,7 @@ public class CardChemicalScreen extends CardItemScreen {
     @Override
     public void changeTick(int change) {
         if (Screen.hasShiftDown()) change *= 10;
-        if (Screen.hasControlDown()) change *= 64;
+        if (Screen.hasControlDown()) change *= 100;
         if (change < 0) {
             currentTicks = (Math.max(currentTicks + change, Config.MIN_TICKS_CHEMICAL.get().get(container.getSlot(1).getItem().getCount())));
         } else {
@@ -149,11 +150,10 @@ public class CardChemicalScreen extends CardItemScreen {
 
     @Override
     public void setExtract(NumberButton amountButton, int btn) {
-    	int change = currentMode == 0 ? 1 : 100;
         if (btn == 0)
-            changeAmount(change);
+            changeAmount(1);
         else if (btn == 1)
-            changeAmount(change * -1);
+            changeAmount(-1);
         amountButton.setValue(currentMode == 0 ? currentPriority : currentChemicalExtractAmt);
         amountButton.playDownSound(Minecraft.getInstance().getSoundManager());
     }

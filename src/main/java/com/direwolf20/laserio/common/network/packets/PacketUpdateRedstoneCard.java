@@ -13,22 +13,43 @@ import java.util.function.Supplier;
 public class PacketUpdateRedstoneCard {
     byte mode;
     byte channel;
+    boolean threshold;
+    byte thresholdLimit;
+    byte thresholdOutput;
     boolean strong;
+    byte outputMode;
+    byte logicOperation;
+    byte logicOperationChannel;
+    //byte specialFeature;
 
-    public PacketUpdateRedstoneCard(byte mode, byte channel, boolean strong) {
+    public PacketUpdateRedstoneCard(byte mode, byte channel, boolean threshold, byte thresholdLimit, byte thresholdOutput, boolean strong, byte outputMode, byte logicOperation, byte logicOperationChannel) {
         this.mode = mode;
         this.channel = channel;
         this.strong = strong;
+        this.threshold = threshold;
+        this.thresholdLimit = thresholdLimit;
+        this.thresholdOutput = thresholdOutput;
+        this.outputMode = outputMode;
+        this.logicOperation = logicOperation;
+        this.logicOperationChannel = logicOperationChannel;
+        //this.specialFeature = specialFeature;
     }
 
     public static void encode(PacketUpdateRedstoneCard msg, FriendlyByteBuf buffer) {
         buffer.writeByte(msg.mode);
         buffer.writeByte(msg.channel);
+        buffer.writeBoolean(msg.threshold);
+        buffer.writeByte(msg.thresholdLimit);
+        buffer.writeByte(msg.thresholdOutput);
         buffer.writeBoolean(msg.strong);
+        buffer.writeByte(msg.outputMode);
+        buffer.writeByte(msg.logicOperation);
+        buffer.writeByte(msg.logicOperationChannel);
+        //buffer.writeByte(msg.specialFeature);
     }
 
     public static PacketUpdateRedstoneCard decode(FriendlyByteBuf buffer) {
-        return new PacketUpdateRedstoneCard(buffer.readByte(), buffer.readByte(), buffer.readBoolean());
+        return new PacketUpdateRedstoneCard(buffer.readByte(), buffer.readByte(), buffer.readBoolean(), buffer.readByte(), buffer.readByte(), buffer.readBoolean(), buffer.readByte(), buffer.readByte(), buffer.readByte());
     }
 
     public static class Handler {
@@ -49,7 +70,14 @@ public class PacketUpdateRedstoneCard {
                 stack = ((CardRedstoneContainer) container).cardItem;
                 CardRedstone.setTransferMode(stack, msg.mode);
                 CardRedstone.setRedstoneChannel(stack, msg.channel);
+                CardRedstone.setThreshold(stack, msg.threshold);
+                CardRedstone.setThresholdLimit(stack, msg.thresholdLimit);
+                CardRedstone.setThresholdOutput(stack, msg.thresholdOutput);
                 CardRedstone.setStrong(stack, msg.strong);
+                CardRedstone.setOutputMode(stack, msg.outputMode);
+                CardRedstone.setLogicOperation(stack, msg.logicOperation);
+                CardRedstone.setRedstoneChannelOperation(stack, msg.logicOperationChannel);
+                //CardRedstone.setSpecialFeature(stack, msg.specialFeature);
             });
 
             ctx.get().setPacketHandled(true);

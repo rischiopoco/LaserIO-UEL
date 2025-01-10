@@ -83,6 +83,17 @@ public class LaserIOLanguageProvider extends LanguageProvider {
         add("screen.laserio.low", "Low");
         add("screen.laserio.high", "High");
 
+        add("screen.laserio.redstone.threshold", "Threshold");
+        add("screen.laserio.redstone.thresholdlimit", "Limit");
+        add("screen.laserio.redstone.thresholdoutput", "Output");
+        add("screen.laserio.redstone.normal", "Normal");
+        add("screen.laserio.redstone.complementary", "Complementary");
+        add("screen.laserio.redstone.not", "NOT");
+        add("screen.laserio.redstone.nologicoperation", "No logic operation");
+        add("screen.laserio.redstone.and", "AND");
+        add("screen.laserio.redstone.or", "OR");
+        add("screen.laserio.redstone.xor", "XOR");
+
         add("screen.laserio.showparticles", "Show Particles");
         add("screen.laserio.hideparticles", "Hide Particles");
 
@@ -111,7 +122,7 @@ public class LaserIOLanguageProvider extends LanguageProvider {
         add("laserio.tooltip.item.card.Overclockers", "Overclockers: ");
         add("laserio.tooltip.item.card.None", "None");
 
-        //Energy Overclockers
+        //Energy Overclockers Tooltip
         add("laserio.tooltip.item.energy_overclocker.max_fe", "Max %d FE/t");
 
         //Filter Tooltips

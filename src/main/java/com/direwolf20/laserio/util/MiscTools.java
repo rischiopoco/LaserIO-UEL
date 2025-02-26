@@ -1,7 +1,6 @@
 package com.direwolf20.laserio.util;
 
 import com.mojang.math.Axis;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -26,33 +25,27 @@ public class MiscTools {
             case UP -> {
                 Quaternionf quaternionf = Axis.XP.rotationDegrees(-270);
                 offsetVector = quaternionf.transform(offsetVector);
-                //offsetVector.transform(Vector3f.XP.rotationDegrees(-270));
                 offsetVector.add(0, 1, 0);
             }
             case DOWN -> {
                 Quaternionf quaternionf = Axis.XP.rotationDegrees(-90);
                 offsetVector = quaternionf.transform(offsetVector);
-                //offsetVector.transform(Vector3f.XP.rotationDegrees(-90));
                 offsetVector.add(0, 0, 1);
-                //reverse = false;
             }
-            //case NORTH -> offsetVector;
+            case NORTH -> {}
             case EAST -> {
                 Quaternionf quaternionf = Axis.YP.rotationDegrees(-90);
                 offsetVector = quaternionf.transform(offsetVector);
-                //offsetVector.transform(Vector3f.YP.rotationDegrees(-90));
                 offsetVector.add(1, 0, 0);
             }
             case SOUTH -> {
                 Quaternionf quaternionf = Axis.YP.rotationDegrees(-180);
                 offsetVector = quaternionf.transform(offsetVector);
-                //offsetVector.transform(Vector3f.YP.rotationDegrees(-180));
                 offsetVector.add(1, 0, 1);
             }
             case WEST -> {
                 Quaternionf quaternionf = Axis.YP.rotationDegrees(-270);
                 offsetVector = quaternionf.transform(offsetVector);
-                //offsetVector.transform(Vector3f.YP.rotationDegrees(-270));
                 offsetVector.add(0, 0, 1);
             }
         }

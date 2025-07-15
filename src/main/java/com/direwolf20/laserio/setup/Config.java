@@ -38,18 +38,14 @@ public class Config {
 
     //Validation
     private static boolean positiveIntegerValidator(Object obj) {
-        if (obj instanceof Integer num) {
-            return (num > 0);
-        }
-        return false;
+        return obj instanceof Integer num && num > 0;
     }
 
+
     private static boolean nameValidator(Object obj) {
-        if (obj instanceof String) {
-            return true;
-        }
-        return false;
+        return obj instanceof String name && name.isBlank();
     }
+
 
     private static boolean colorValidator(Object obj) {
         if (obj instanceof String color) {
@@ -57,6 +53,7 @@ public class Config {
                 Integer.decode(color);
                 return true;
             } catch(NumberFormatException e) {
+                return false;
             }
         }
         return false;
